@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
 
 #region VARIABLES
     public GamePlayController gamePlayController;
+    public UIController uiController;
     public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
     public GameState currentGameState { get; private set; }

@@ -2,14 +2,23 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField] private GameScreenUIHandler gameScreenUIHandler;
+    [SerializeField] private HomeScreenUIHandler homeScreenUIHandler;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+     public void OpenHome()
+    {
+        // homeScreenUIHandler.OpenHome();
+    }
+    public void StartGame()
+    {
+        // homeScreenUIHandler.CloseHome();
+        // gameScreenUIHandler.StartGame();
+    }
+    public void HomeWithGameOver()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void InitHomeWithGameComplete()
     {
         
     }

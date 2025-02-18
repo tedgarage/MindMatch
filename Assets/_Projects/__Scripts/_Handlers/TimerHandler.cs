@@ -24,15 +24,7 @@ public class TimerHandler : MonoBehaviour
     #region UNITY METHODS
     private void Awake()
     {
-
-    }
-    private void Start()
-    {
-        totalTimeInSeconds = GameSettings.sharedInstance.GameDuration;
-        remainingTime = GameSettings.sharedInstance.GameDuration;
-        tickingSeconds = GameSettings.sharedInstance.TickingSeconds;
-        
-        Reset();
+       
     }
     void Update()
     {
@@ -62,11 +54,19 @@ public class TimerHandler : MonoBehaviour
     #endregion
 
     #region  PUBLIC METHODS
-    public void SetText(TextMeshProUGUI _timerText,Transform _timerBar)
+    public void Init(Action _action)
+    {
+        totalTimeInSeconds = GameSettings.sharedInstance.GameDuration;
+        remainingTime = GameSettings.sharedInstance.GameDuration;
+        tickingSeconds = GameSettings.sharedInstance.TickingSeconds;
+        Reset();   
+        OnTimerEnd = _action;
+    }
+
+    public void SetText(TextMeshProUGUI _timerText)
     {
         timerTicking = false;
         timerText = _timerText;
-        timerBar = _timerBar;
         DisplayTime(remainingTime);
     }
     public void Reset()
@@ -82,7 +82,14 @@ public class TimerHandler : MonoBehaviour
         _timerIsRunning = true;
         tickingSeconds = -1;
     }
-
+    public void PauseTimer()
+    {
+        _timerIsRunning = false;
+    }
+     public void UnPauseTimer()
+    {
+        _timerIsRunning = true;
+    }
     public float StopTimer()
     {
         _timerIsRunning = false;
@@ -104,7 +111,6 @@ public class TimerHandler : MonoBehaviour
             if (timerTicking == false)
             {
                 timerTicking = true;
-                AudioManager.sharedInstance.PlayTimerEndingBgClip();
             }
             tickingSeconds = _time;
             if (timerText != null)
@@ -127,7 +133,7 @@ public class TimerHandler : MonoBehaviour
     private void DisplayTime(float timeToDisplay)
     {
         if (timerText == null) return;
-        timerText.text = (((int)timeToDisplay+1)).ToString() + " sec";
+        timerText.text = (((int)timeToDisplay)).ToString() + " sec";
         // timerText.text = GetFormatSec(timeToDisplay);
     }
     private Sequence TimerTextBump(Transform Obj)

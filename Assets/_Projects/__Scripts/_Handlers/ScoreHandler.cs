@@ -35,7 +35,7 @@ public class ScoreHandler : MonoBehaviour
         streakValue=0;
         maxStreak = 0;
         finishedProductsCount =0;
-        streakTotalLifeTime = Constants.STREAK_DURATION_SEC;
+        
 
         // tutorialRunning = true;
     }
@@ -130,38 +130,7 @@ public class ScoreHandler : MonoBehaviour
         print("Percentage "+_percentage);
         _percentage = _percentage*100;
         int score = 0;
-        if(GameManager.sharedInstance.currentGameState == GameState.Tutorial)
-        {
-            score = Constants.CORRECT_ANSWER_ON_TIME;
-        }
-        else if (_percentage == 0)
-        {
-            score = Constants.CORRECT_ANSWER_AFTER_DISMISS;
-        }
-        else
-        {
-            float scoreMultiplier = 0;
-            if (_percentage >= Constants.THREE_STAR_REMAINING_TIME_PERCENTAGE)
-            {
-                scoreMultiplier = Constants.THREE_STAR_MULTIPLIER;
-            }
-            else if (_percentage >= Constants.TWO_STAR_REMAINING_TIME_PERCENTAGE)
-            {
-                scoreMultiplier = Constants.TWO_STAR_MULTIPLIER;
-            }
-            else
-            {
-                scoreMultiplier = Constants.ONE_STAR_MULTIPLIER;
-            }
-            print("score multiplier " + scoreMultiplier);
-            
-            score =(int) (Constants.CORRECT_ANSWER_ON_TIME  * scoreMultiplier);
-        }
-        
-        if(!_direction)
-        {
-            score = score/2;
-        }
+     
 
         return score * Constants.SCORE_MULTIPLIER;
     }

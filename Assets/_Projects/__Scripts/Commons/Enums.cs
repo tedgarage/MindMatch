@@ -1,17 +1,3 @@
-using System;
-
-// public enum UsingZohoProduct
-// {
-//     None,
-//     Projects, =16
-//     Mail, = 12
-//     Books, = 21
-//     Desk, =10
-//     People, =20
-//     CRM, = 1
-// }
-
-
 
 public enum ZohoProduct
 {
@@ -48,9 +34,9 @@ public enum ZohoProduct
     Apptics,
     Analytics,
     Payroll,
-    Directory,
-    One
+    Directory
 }
+
 public enum ZohoProductColor
 {
     Red,
@@ -59,8 +45,6 @@ public enum ZohoProductColor
     Yellow
 }
 
-
-[Serializable]
 public enum GameState
 {
     None,
@@ -71,15 +55,7 @@ public enum GameState
 }
 public enum ProductType
 {
-    Normal,
-    HideLogo,
-    HideName
-}
-public enum ProductPlacementState
-{
     None,
-    TimeUp,
-    Dismissed,
-    BeganToShow,
-    Shown
+    Product,
+    Competitor
 }
